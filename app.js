@@ -74,7 +74,7 @@ function resetGame() {
     pickedColor = pickColor(colors);
     document.querySelector("#rgbText").textContent = pickedColor;
     //remove h1 color
-    document.querySelector("h1").style.backgroundColor = "#232323";
+    document.querySelector("h1").style.backgroundColor = "steelblue";
     //hide message
     message.textContent = "";
     //change btn name to New colors
