@@ -3,6 +3,7 @@ var colors = generateColors(difficulty);
 var squares = document.querySelectorAll(".square");
 var pickedColor = pickColor(colors);
 var message = document.querySelector("#messageText");
+var btnReset = document.querySelector("#btnReset");
 
 //update textRGB
 document.querySelector("#rgbText").textContent = pickedColor;
@@ -18,6 +19,8 @@ for (var i=0; i<squares.length; i++) {
             changeAllColors(pickedColor);
             //change h1 background color to pickedcolor
             document.querySelector("h1").style.backgroundColor = pickedColor;
+            //change btn name to play again
+            btnReset.textContent = "Play Again?";
         } else {
             //display message
             message.textContent = "Try again";
@@ -50,3 +53,21 @@ function randomInt(int) {
 function pickColor(arr) {
     return arr[randomInt(arr.length-1)]; 
 }
+
+btnReset.addEventListener("click", function(){
+    //re-generate colors array
+    colors = generateColors(difficulty);
+    //update square colors
+    for (var i = 0; i < squares.length; i++) {
+        squares[i].style.backgroundColor = colors[i];
+    }
+    //update testRGB
+    pickedColor = pickColor(colors);
+    document.querySelector("#rgbText").textContent = pickedColor;
+    //remove h1 color
+    document.querySelector("h1").style.backgroundColor = "#232323";
+    //hide message
+    message.textContent = "";
+    //change btn name to New colors
+    btnReset.textContent = "New colors";
+});
