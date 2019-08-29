@@ -4,8 +4,7 @@ var squares = document.querySelectorAll(".square");
 var pickedColor = pickColor(colors);
 var message = document.querySelector("#messageText");
 var btnReset = document.querySelector("#btnReset");
-var btnEasy = document.querySelector("#btnEasy");
-var btnHard = document.querySelector("#btnHard");
+var btnModes = document.querySelectorAll(".btnMode");
 
 //update textRGB
 document.querySelector("#rgbText").textContent = pickedColor;
@@ -81,17 +80,35 @@ function resetGame() {
     btnReset.textContent = "New colors";
 }
 
-//difficulty logic
-btnEasy.addEventListener("click", function(){
-    btnEasy.classList.add("selected");
-    btnHard.classList.remove("selected");
-    difficulty = 3;
-    resetGame();
-});
 
-btnHard.addEventListener("click", function(){
-    btnHard.classList.add("selected");
-    btnEasy.classList.remove("selected");
-    difficulty = 6;
-    resetGame();
-});
+// new difficulty logic
+for (var i=0; i<btnModes.length; i++) {
+    btnModes[i].addEventListener("click", function() {
+        for (var j=0; j<btnModes.length; j++) {
+            btnModes[j].classList.remove("selected");
+        }
+        this.classList.add("selected");
+        this.textContent === "Easy" ? difficulty = 3 : difficulty = 6;
+        resetGame();
+    });
+}
+
+
+// legacy code for difficulty logic
+//
+// var btnEasy = document.querySelector("#btnEasy");
+// var btnHard = document.querySelector("#btnHard");
+//
+// btnEasy.addEventListener("click", function(){
+//     btnEasy.classList.add("selected");
+//     btnHard.classList.remove("selected");
+//     difficulty = 3;
+//     resetGame();
+// });
+//
+// btnHard.addEventListener("click", function(){
+//     btnHard.classList.add("selected");
+//     btnEasy.classList.remove("selected");
+//     difficulty = 6;
+//     resetGame();
+// });
